@@ -6,7 +6,6 @@ import {
   Text,
   Menu,
   MenuButton,
-  SimpleGrid,
   MenuList,
   Avatar,
   MenuItem,
@@ -25,6 +24,7 @@ import axios from "axios";
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import { ChatState } from "../context/ChatProvider";
+import { configs } from "../serverConnect/Config";
 import ChatLoading from "./ChatLoading";
 import { getSender } from "./Getsender";
 import ProfileModal from "./ProfileModal";
@@ -38,8 +38,6 @@ function SideDrawer({ user }) {
   const history = useHistory();
   const { isOpen, onOpen, onClose } = useDisclosure();
 
-  // const [selectedChat, setSelectedChat] = useState();
-  // const [chats, setChats] = useState([]);
 
   const { setSelectedChat, chats, setChats, notifications, setNotifications } =
     ChatState();
@@ -73,7 +71,7 @@ function SideDrawer({ user }) {
       };
 
       const { data } = await axios.get(
-        `http://localhost:3000/api/user?search=${search}`,
+        `${configs.api}/api/user?search=${search}`,
         config
       );
       setLoading(false);
@@ -103,7 +101,7 @@ function SideDrawer({ user }) {
       };
 
       const { data } = await axios.post(
-        `http://localhost:3000/api/chat`,
+        `${configs.api}/api/chat`,
         { userId },
         config
       );
@@ -137,8 +135,6 @@ function SideDrawer({ user }) {
         p="5px 10px 5px 10px"
         borderWidth={"5px"}
       >
-        {/* <SimpleGrid columns={3} spacing={2}> */}
-        {/* <Box justifyContent="flex-start" display="flex"> */}
         <Tooltip label="Search User to Chat" hasArrow placement="bottom-end">
           <Button variant={"ghost"} bg="lightgrey" onClick={onOpen}>
             <i class="fas fa-search"></i>
@@ -147,21 +143,16 @@ function SideDrawer({ user }) {
             </Text>
           </Button>
         </Tooltip>
-        {/* </Box> */}
 
-        {/* <Box justifyContent={"center"} display="flex"> */}
+       
         <Text fontSize={"3xl"} fontFamily="Work sans">
           Teem Chat
         </Text>
-        {/* </Box> */}
+        
 
         <div>
           <Menu>
             <MenuButton p={1}>
-              {/* <NotificationBadge
-              count={notifications.length}
-              effect={Effect.SCALE}
-              /> */}
               <BellIcon fontSize={"2xl"} m={1} />
             </MenuButton>
             <MenuList pl={2}>
@@ -204,7 +195,6 @@ function SideDrawer({ user }) {
             </MenuList>
           </Menu>
         </div>
-        {/* </SimpleGrid> */}
       </Box>
 
       <Drawer placement="left" onClose={onClose} isOpen={isOpen}>

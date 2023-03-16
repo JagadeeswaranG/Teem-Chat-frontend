@@ -11,6 +11,7 @@ import {
 import axios from "axios";
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
+import { configs } from "../serverConnect/Config";
 
 function Signup() {
   const [show, setShow] = useState(false);
@@ -106,7 +107,7 @@ function Signup() {
         },
       };
       const { data } = await axios.post(
-        "http://localhost:3000/api/user/signup",
+        `${configs.api}/api/user/signup`,
         { name, email, password, pic },
         config
       );

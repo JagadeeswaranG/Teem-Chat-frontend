@@ -16,6 +16,7 @@ import {
 import axios from "axios";
 import React, { useState } from "react";
 import { ChatState } from "../context/ChatProvider";
+import { configs } from "../serverConnect/Config";
 import UserBadgeItem from "./userAvatar/UserBadgeItem";
 import UserListItem from "./userAvatar/UserListItem";
 
@@ -47,7 +48,7 @@ function GroupChatModal({ children, user }) {
       };
 
       const { data } = await axios.get(
-        `http://localhost:3000/api/user?search=${search}`,
+        `${configs.api}/api/user?search=${search}`,
         config
       );
       // console.log(data);
@@ -86,7 +87,7 @@ function GroupChatModal({ children, user }) {
       };
 
       const { data } = await axios.post(
-        `http://localhost:3000/api/chat/group`,
+        `${configs.api}/api/chat/group`,
         {
           name: groupChatName,
           users: JSON.stringify(selectedUsers.map((u) => u._id)),

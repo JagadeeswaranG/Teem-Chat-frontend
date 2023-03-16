@@ -4,6 +4,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import ChatLoading from "../components/ChatLoading";
 import { ChatState } from "../context/ChatProvider";
+import { configs } from "../serverConnect/Config";
 import { getSender } from "./Getsender";
 import GroupChatModal from "./GroupChatModal";
 
@@ -31,7 +32,7 @@ function MyChats({ user , fetchAgain}) {
       };
 
       const { data } = await axios.get(
-        `http://localhost:3000/api/chat`,
+        `${configs.api}/api/chat`,
         config
       );
       // console.log(data);

@@ -19,6 +19,7 @@ import {
 import axios from "axios";
 import React, { useState } from "react";
 import { ChatState } from "../../context/ChatProvider";
+import { configs } from "../../serverConnect/Config";
 import UserBadgeItem from "./UserBadgeItem";
 import UserListItem from "./UserListItem";
 
@@ -56,7 +57,7 @@ function UpdateGroupChatModal({ fetchAgain, setFetchAgain, user, fetchMessages }
       };
 
       const { data } = await axios.put(
-        `http://localhost:3000/api/chat/groupremove`,
+        `${configs.api}/api/chat/groupremove`,
         {
           chatId: selectedChat._id,
           userId: user1._id,
@@ -93,7 +94,7 @@ function UpdateGroupChatModal({ fetchAgain, setFetchAgain, user, fetchMessages }
       };
 
       const { data } = await axios.put(
-        `http://localhost:3000/api/chat/rename`,
+        `${configs.api}/api/chat/rename`,
         {
           chatId: selectedChat._id,
           chatName: groupChatName,
@@ -134,7 +135,7 @@ function UpdateGroupChatModal({ fetchAgain, setFetchAgain, user, fetchMessages }
       };
 
       const { data } = await axios.get(
-        `http://localhost:3000/api/user?search=${search}`,
+        `${configs.api}/api/user?search=${search}`,
         config
       );
       setLoading(false);
@@ -186,7 +187,7 @@ function UpdateGroupChatModal({ fetchAgain, setFetchAgain, user, fetchMessages }
       };
 
       const { data } = await axios.put(
-        `http://localhost:3000/api/chat/groupadd`,
+        `${configs.api}/api/chat/groupadd`,
         {
           chatId: selectedChat._id,
           userId: user1._id,

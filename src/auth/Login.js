@@ -11,6 +11,7 @@ import {
 } from "@chakra-ui/react";
 import { useHistory } from "react-router-dom";
 import axios from "axios";
+import { configs } from "../serverConnect/Config";
 
 function Login() {
   const [show, setShow] = useState(false);
@@ -43,7 +44,7 @@ function Login() {
         },
       };
       const { data } = await axios.post(
-        "http://localhost:3000/api/user/login",
+        `${configs.api}/api/user/login`,
         { email, password },
         config
       );
