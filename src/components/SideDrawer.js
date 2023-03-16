@@ -23,8 +23,6 @@ import {
 } from "@chakra-ui/react";
 import axios from "axios";
 import React, { useState } from "react";
-import { Effect } from "react-notification-badge";
-import NotificationBadge from "react-notification-badge";
 import { useHistory } from "react-router-dom";
 import { ChatState } from "../context/ChatProvider";
 import ChatLoading from "./ChatLoading";
@@ -160,10 +158,10 @@ function SideDrawer({ user }) {
         <div>
           <Menu>
             <MenuButton p={1}>
-              <NotificationBadge
+              {/* <NotificationBadge
               count={notifications.length}
               effect={Effect.SCALE}
-              />
+              /> */}
               <BellIcon fontSize={"2xl"} m={1} />
             </MenuButton>
             <MenuList pl={2}>
